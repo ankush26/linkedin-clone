@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import { PhotoSizeSelectActualOutlined, MoreVert } from "@mui/icons-material/";
+import { PhotoSizeSelectActualOutlined, MoreVert, YouTube, Event, Article, ArticleSharp, ThumbUpOutlined, CommentOutlined, ShareOutlined, Send } from "@mui/icons-material/";
 import PostModal from "./PostModal";
 import db from "../firebase.js";
 import ReactPlayer from "react-player";
@@ -46,7 +46,7 @@ function Main() {
         <Grid item xs={3} mt={1}>
           <Button
             variant="outlined"
-            style={{ color: "grey", border: "none" }}
+            style={{ color: "grey", border: "none", textTransform: "capitalize"}}
             startIcon={
               <PhotoSizeSelectActualOutlined style={{ color: "blue" }} />
             }
@@ -57,9 +57,9 @@ function Main() {
         <Grid item xs={3} mt={1}>
           <Button
             variant="outlined"
-            style={{ color: "grey", border: "none" }}
+            style={{ color: "grey", border: "none", textTransform: "capitalize" }}
             startIcon={
-              <PhotoSizeSelectActualOutlined style={{ color: "blue" }} />
+              <YouTube style={{ color: "green" }} />
             }
           >
             Video
@@ -68,9 +68,9 @@ function Main() {
         <Grid item xs={3} mt={1}>
           <Button
             variant="outlined"
-            style={{ color: "grey", border: "none" }}
+            style={{ color: "grey", border: "none", textTransform: "capitalize" }}
             startIcon={
-              <PhotoSizeSelectActualOutlined style={{ color: "blue" }} />
+              <Event style={{ color: "orange" }} />
             }
           >
             Event
@@ -79,9 +79,9 @@ function Main() {
         <Grid item xs={3} mt={1}>
           <Button
             variant="outlined"
-            style={{ color: "grey", border: "none", fontSize: "12px" }}
+            style={{ color: "grey", border: "none", fontSize: "13px", textTransform: "capitalize" }}
             startIcon={
-              <PhotoSizeSelectActualOutlined style={{ color: "blue" }} />
+              <ArticleSharp style={{ color: "pink" }} />
             }
           >
             Write article
@@ -121,52 +121,52 @@ function Main() {
             )
           )}
           <CardContent style={{ padding: "0px 10px", marginTop: "4px" }}>
-            1
+      
           </CardContent>
           <CardActions disableSpacing>
             <Grid container style={{ borderTop: "1px solid rgb(0,0,0,0.1)" }}>
               <Grid item xs={3} mt={1}>
                 <Button
                   variant="outlined"
-                  style={{ color: "grey", border: "none" }}
+                  style={{ color: "grey", border: "none", textTransform: "capitalize" }}
                   startIcon={
-                    <PhotoSizeSelectActualOutlined style={{ color: "blue" }} />
+                    <ThumbUpOutlined/>
                   }
                 >
-                  Photo
+                  Like
                 </Button>
               </Grid>
               <Grid item xs={3} mt={1}>
                 <Button
                   variant="outlined"
-                  style={{ color: "grey", border: "none" }}
+                  style={{ color: "grey", border: "none", textTransform: "capitalize" }}
                   startIcon={
-                    <PhotoSizeSelectActualOutlined style={{ color: "blue" }} />
+                    <CommentOutlined />
                   }
                 >
-                  Video
+                  Comment
                 </Button>
               </Grid>
               <Grid item xs={3} mt={1}>
                 <Button
                   variant="outlined"
-                  style={{ color: "grey", border: "none" }}
+                  style={{ color: "grey", border: "none", textTransform: "capitalize" }}
                   startIcon={
-                    <PhotoSizeSelectActualOutlined style={{ color: "blue" }} />
+                    <ShareOutlined/>
                   }
                 >
-                  Event
+                  Share
                 </Button>
               </Grid>
               <Grid item xs={3} mt={1}>
                 <Button
                   variant="outlined"
-                  style={{ color: "grey", border: "none" }}
+                  style={{ color: "grey", border: "none", textTransform: "capitalize" }}
                   startIcon={
-                    <PhotoSizeSelectActualOutlined style={{ color: "blue" }} />
+                    <Send/>
                   }
                 >
-                  Write
+                  Send
                 </Button>
               </Grid>
             </Grid>
