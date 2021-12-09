@@ -1,9 +1,12 @@
 import React from "react";
+import Header from "./Header";
 import { Container, Grid, Paper } from "@mui/material";
 import { styled } from "@mui/system";
 import Leftside from "./Leftside";
 import Main from "./Main";
 import Rightside from "./Rightside";
+import { useSelector  } from 'react-redux'
+import { Navigate } from "react-router";
 
 const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
@@ -12,7 +15,14 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function Home() {
+  const user = useSelector((state)=>state.user.user)
+
   return (
+    <>
+    {
+        !user && <Navigate to = '/'/>
+      }
+    <Header/>
     <Container>
     <Grid container columnSpacing={3}>
       <Grid item xs={12}>
@@ -37,6 +47,7 @@ function Home() {
       </Grid>
     </Grid>
     </Container>
+    </>
   );
 }
 

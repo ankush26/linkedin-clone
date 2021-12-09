@@ -1,8 +1,11 @@
-import { Box, Toolbar, AppBar, InputBase, Typography} from "@mui/material/";
+import { Box, Toolbar, AppBar, Avatar,  InputBase, Typography} from "@mui/material/";
 import { styled, alpha } from "@mui/material/styles";
 import { LinkedIn,  Home, Sensors, Work, Message, Notifications, AccountCircle, Menu, ArrowDropDown} from "@mui/icons-material/";
 import SearchIcon from '@mui/icons-material/Search';
-
+import { setSignOutState } from "../features/user/userSlice";
+import { useSelector, useDispatch } from 'react-redux'
+import { auth } from "../firebase";
+import { Navigate, useNavigate  } from 'react-router-dom'
 import React from "react";
 
 const Search = styled("div")(({ theme }) => ({
@@ -63,7 +66,20 @@ const IconBox = styled(Box)(({ theme }) => ({
 }));
 
 function Header() {
-
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const user = useSelector((state)=>state.user.user)
+  const signOut = () => {
+    auth
+      .signOut()
+      .then(() => {
+        dispatch(setSignOutState());
+        console.log('sgin out')
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+};
 
   return (
     <Box sx={{ background: "white"}}>
@@ -111,16 +127,16 @@ function Header() {
               <Typography component='span' fontSize='12px' >Notificatins</Typography>
           </IconBox>
           <IconBox>
-              <AccountCircle/> 
+              {!user ? <AccountCircle/> : <Avatar alt="Remy Sharp" src={user.photoURL}  sx={{ width: 24, height: 24 }}/>} 
               <div style={{display:'flex', alignItems:'center'}}> 
-              <Typography component='span' fontSize='12px' >Me</Typography>
+              <Typography component='span' fontSize='12px'>{user ? user.displayName : 'Me'}</Typography>
               <ArrowDropDown/> 
               </div>  
           </IconBox>
           <IconBox>
               <Menu/> 
               <div style={{display:'flex', alignItems:'center'}}> 
-              <Typography component='span' fontSize='12px' >Me</Typography>
+              <Typography component='span' fontSize='12px' style={{cursor:'pointer'}}  onClick={signOut}>signOut</Typography>
               <ArrowDropDown/> 
               </div>  
           </IconBox>

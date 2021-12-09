@@ -1,9 +1,10 @@
 import { AppBar, Button, Grid, Paper, Toolbar, Typography } from "@mui/material";
 import { Box, height, styled } from "@mui/system";
-import React from "react";
+import React, { useEffect } from "react";
 import { setUserLoginDetails } from "../features/user/userSlice";
 import { useSelector, useDispatch } from 'react-redux'
 import { auth, provider } from "../firebase";
+import { Navigate, useNavigate  } from 'react-router-dom'
 
 const Logo = styled("img")(({ theme }) => ({
   width: "130px",
@@ -38,6 +39,8 @@ const Google = styled('button')(({ theme }) => ({
 function Login(props) {
   const dispatch = useDispatch()
   const user = useSelector((state)=>state.user.user)
+  const navigate = useNavigate();
+
 
   const setUser = (user) => {
     dispatch(
@@ -45,21 +48,33 @@ function Login(props) {
     );
   }
 
-  const handleAuth = () => {
+  const signIn = () => {
       auth
         .signInWithPopup(provider)
         .then((result) => {
-          console.log('start')
           setUser(result.user);
-          console.log(user)
         })
         .catch((error) => {
           alert(error.message);
         });
   };
 
+
+  useEffect(() => {
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        setUser(user);
+        navigate("/home");
+      }
+    });
+  }, [user]);
+
+
   return (
     <div>
+      {
+        user && <Navigate to = '/home'/>
+      }
       <Box sx={{ flexGrow: 1, background: "transparent" }}>
         <AppBar
           position="static"
@@ -97,7 +112,7 @@ function Login(props) {
         <Grid item sm={12} md={6}>
           <Item elevation={0} style={{padding:'20px'}}>
           <Typography color='primary' component='b' fontSize='55px'>Welcome to your professional community</Typography>
-          <Google onClick={handleAuth}>
+          <Google onClick={signIn}>
             <img src="/images/google.svg" alt="" />
             Sign in with Google
           </Google>

@@ -8,6 +8,8 @@ import {
 } from "@mui/material";
 import { Box, styled } from "@mui/system";
 import React from "react";
+import { useSelector} from 'react-redux'
+
 
 const Photo = styled("img")(({ theme }) => ({
   boxShadow: "none",
@@ -32,6 +34,9 @@ const Widget = styled(Box)(({ theme }) => ({
 }));
 
 function Leftside() {
+
+  const user = useSelector((state)=>state.user.user)
+
   return (
     <Card>
       <Box style={{ alignItem: "center" }}>
@@ -44,7 +49,7 @@ function Leftside() {
         <Photo src="/images/photo.svg" />
       </Box>
       <CardContent>
-        <h2>Welcome, there!</h2>
+        <h2>Welcome, {user ? user.displayName : ''}</h2>
         <a style={{ color: "blue", fontSize: "14px" }}>Add a photo</a>
       </CardContent>
       <Widget>
