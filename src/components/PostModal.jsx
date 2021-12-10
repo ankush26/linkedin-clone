@@ -70,7 +70,7 @@ function PostModal(props) {
       setVideoLink("");
       setVideoVisible(false);
       dispatch(setLoading(false));
-   }, 3000)
+   }, 5000)
   };
 
   return (
