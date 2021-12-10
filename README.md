@@ -1,3 +1,12 @@
+# Linkedin Clone
+
+## Screenshot
+
+![App Screenshot](https://raw.githubusercontent.com/ankush26/linkedin-clone/master/Sreenshot/1.png)
+![App Screenshot](https://raw.githubusercontent.com/ankush26/linkedin-clone/master/Sreenshot/2.png)
+![App Screenshot](https://raw.githubusercontent.com/ankush26/linkedin-clone/master/Sreenshot/3.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
